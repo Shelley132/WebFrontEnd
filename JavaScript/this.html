@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>理解this对象</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var obj = {};
+			obj.x = 4;
+			obj.y = function(){
+				alert(this.x);
+			}
+			var checkThis = function() {
+				alert(this.x);
+			};
+			var x = 'this is a property of window';
+			var obj2 = obj.y;
+			obj.y();   //弹出 4e
+			checkThis();    //弹出 'this is a property of window
+			obj2();    //弹出 'this is a property of window
+
+			function changeStyle( type , value ){
+			this.style[ type ] = value;
+			}
+			var one = document.getElementById( 'one' );
+			changeStyle.call( one , 'fontSize' , '100px' );
+			changeStyle('fontSize' , '300px');  //出现错误，因为此时changeStyle中this引用的是window对象，而window并无style属性。
+		</script>
+	</body>
+</html>

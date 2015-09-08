@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JavaScript事件流</title>
+</head>
+<body>
+	<div id="box">
+		<input type="button" value="按钮1" id="btn1"></input>
+		<input type="button" value="按钮2" id="btn2"></input>
+		<input type="button" value="按钮3" id="btn3"></input>
+		<a href="event.html" id="go">跳转</a>
+	</div>
+	<script type="text/javascript">
+		function showMes(event){
+			alert(event.target.nodeName);
+			event.stopPropagation();		//阻止事件冒泡，不会执行showBox()
+		}
+
+		function showBox(){
+			alert("这是放按钮的盒子box");
+		}
+
+		function stop(event){
+			event.preventDefault();
+		}
+		var btn1 = document.getElementById("btn1");
+		// btn1.onclick = function(){
+		// 	alert("Hello World!");
+		// }
+		
+		var btn2 = document.getElementById("btn2");
+		// btn2.addEventListener("click",showMes,false);
+		// btn2.removeEventListener("click",showMes,false);
+
+
+		var btn3 = document.getElementById("btn3");
+		// btn3.attachEvent('onclick',showMes);
+		var eventUtil = {
+			//添加句柄
+			addHandler:function(element,type,handler) {
+				if(element.addEventListener){
+					element.addEventListener(type,handler,false);
+				}else if(element.attachEvent){
+					element.attachEvent('on'+type,handler);
+				}else{
+					element['on'+type] = handler;
+				}
+			},
+			//删除句柄
+			removeHandler:function(element,type,handler) {
+				if(element.removeEventListener){
+					element.removeEventListener(type,handler,false);
+				}else if(element.detachEvent){
+					element.detachEvent('on'+type,handler);
+				}else{
+					element['on'+type] = null;
+				}
+			}
+		}
+		var box = document.getElementById("box");
+		var go = document.getElementById("go");
+		eventUtil.addHandler(btn1,'click',showMes);
+		eventUtil.addHandler(box,'click',showBox);
+		eventUtil.addHandler(go,'click',stop);
+		eventUtil.addHandler(btn2,'click',showMes);
+		eventUtil.addHandler(btn3,'click',showMes);
+	</script>
+</body>
+</html>
