@@ -14,9 +14,11 @@ expModule.directive('accordion', function() {
 					}
 				});
 			}
+			//遍历expanders中的元素，如果不是被选中的expander，则隐藏；否则不隐藏。
 			this.addExpander = function(expander) {
 				expanders.push(expander);
 			}
+			//向expanders中压入新的expander
 		}
 	}
 });
@@ -27,9 +29,11 @@ expModule.directive('expander', function() {
 		replace : true,
 		transclude : true,
 		require : '^?accordion',
+		//依赖于外部的accordion
 		scope : {
 			title : '=expanderTitle'
 		},
+		//将title进行绑定
 		template : '<div>'
 				  + '<div class="title" ng-click="toggle()">{{title}}</div>'
 				  + '<div class="body" ng-show="showMe" ng-transclude></div>'

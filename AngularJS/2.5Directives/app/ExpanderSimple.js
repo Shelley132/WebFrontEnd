@@ -4,8 +4,10 @@ expanderModule.directive('expander', function() {
 		restrict : 'EA',
 		replace : true,
 		transclude : true,
+		//transclude是内部内容可以变换
 		scope : {
 			title : '=expanderTitle'
+			//与父scope的expanderTitle属性进行双向绑定
 		},
 		template : '<div>'
 				 + '<div class="title" ng-click="toggle()">{{title}}</div>'

@@ -9,6 +9,7 @@ myModule.directive("greeting", function() {
     	restrict:'AE',
         scope:{
         	greet:'&'
+            //实现controller与directive之间的通信
         },
         template:'<input type="text" ng-model="userName" /><br/>'+
         		 '<button class="btn btn-default" ng-click="greet({name:userName})">Greeting</button><br/>'

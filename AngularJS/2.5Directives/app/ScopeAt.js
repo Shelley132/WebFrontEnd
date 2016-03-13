@@ -13,5 +13,6 @@ myModule.directive("drink", function() {
         // link:function(scope,element,attrs){
         // 	scope.flavor=attrs.flavor;
         // }
+        //以上表示把指令中的flavor给scope中的flavor
     }
 });
