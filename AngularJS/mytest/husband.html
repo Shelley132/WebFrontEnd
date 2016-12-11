@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html ng-app="MyModule">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Service练习实例1</title>
+		<script src="js/angular.js"></script>
+		<script src="husband.js"></script>
+	</head>
+	<body>
+		<div ng-controller="husbandCtrl">
+			<ul>
+				<li ng-repeat="husband in husbands">
+					{{husband.name}}
+				</li>
+			</ul>
+		</div>
+	</body>
+</html>
